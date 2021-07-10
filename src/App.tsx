@@ -1,96 +1,150 @@
-import { useEffect, useState } from 'react';
-import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
-
 function App() {
-	const [active, setActive] = useState(true);
-
-	useEffect(() => {
-		if (!active) return;
-		const timeoutId = setTimeout(() => {
-			setActive(false);
-		}, 5000);
-		return () => clearTimeout(timeoutId);
-	}, [active]);
-
-	const props = useSpring({
-		transform: active ? 'scale(1)' : 'scale(0)',
-		opacity: active ? 1 : 0,
-	});
-
-	function handleClose() {
-		setActive(false);
-	}
-
 	return (
-		<PageContent>
-			<NotificationWrapper style={props}>
-				<NotificationTitle>Try this notification</NotificationTitle>
-				<NotificationContent>
-					Use this notification in your everyday apps. And give nice clean UI for your
-					users.
-				</NotificationContent>
-				<NotificationFooter>
-					<ActionButton onClick={handleClose}>Close</ActionButton>
-				</NotificationFooter>
-			</NotificationWrapper>
-			<button onClick={() => setActive(true)}>Show notification</button>
-		</PageContent>
+		<StyledMain>
+			<div className="grid">
+				<div className="gridItem">
+					<div className="content">
+						<h2>Designing a notification In react</h2>
+						<p>
+							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel doloremque
+							deleniti laborum quibusdam beatae!
+						</p>
+					</div>
+					<img src="/assets/images/1.jpg" alt="" />
+					<div className="overlay"></div>
+				</div>
+				<div className="gridItem">
+					<div className="content">
+						<h2>Build a mosaic layout in React</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit magni
+							perferendis a ipsa.
+						</p>
+					</div>
+					<img src="/assets/images/2.jpg" alt="" />
+					<div className="overlay"></div>
+				</div>
+				<div className="gridItem">
+					<div className="content">
+						<h2>Lorem ipsum dolor sit amet.</h2>
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem
+							praesentium veniam sunt.
+						</p>
+					</div>
+					<img src="/assets/images/3.jpg" alt="" />
+					<div className="overlay"></div>
+				</div>
+				<div className="gridItem">
+					<div className="content">
+						<h2>Lorem ipsum dolor sit.</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium odit
+							debitis dicta!
+						</p>
+					</div>
+					<img src="/assets/images/4.jpg" alt="" />
+					<div className="overlay"></div>
+				</div>
+				<div className="gridItem">
+					<div className="content">
+						<h2>Lorem ipsum dolor sit amet.</h2>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate error
+							nisi iste!
+						</p>
+					</div>
+					<img src="/assets/images/5.jpg" alt="" />
+					<div className="overlay"></div>
+				</div>
+			</div>
+		</StyledMain>
 	);
 }
 
-const PageContent = styled.main`
+const StyledMain = styled.main`
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
-	width: 100vw;
-	background: #dfdfdf;
-`;
-
-const NotificationWrapper = styled(animated.div)`
-	background: #dfdfdf;
-	padding: 1rem;
-	min-width: 15rem;
-	border-radius: 8px;
-	box-shadow: 2px 5px 8px rgba(0, 0, 0, 0.2), -2px -5px 8px rgba(255, 255, 255, 0.883);
-	font-size: 0.8rem;
-	position: fixed;
-	bottom: 10vh;
-	right: 5vw;
-	max-width: 25rem;
-	border: 1px solid rgba(255, 255, 255, 0.472);
-`;
-
-const NotificationTitle = styled.h3`
-	margin: 0;
-	font-size: 1.35em;
-`;
-
-const NotificationContent = styled.p`
-	margin: 0;
-	font-size: 1em;
-`;
-
-const NotificationFooter = styled.footer`
-	display: flex;
-	align-items: center;
-	padding-top: 0.5rem;
-	flex-direction: row-reverse;
-`;
-
-const ActionButton = styled.button`
-	outline: none;
-	border: none;
-	background: #dfdfdf;
-	padding: 0.35rem 0.75rem;
-	border-radius: 4px;
-	font-size: 0.85em;
-	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2), -2px -2px 8px rgba(255, 255, 255, 0.883);
-	transition: box-shadow 0.15s linear;
-	&:active {
-		box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2) inset,
-			-2px -2px 8px rgba(255, 255, 255, 0.883) inset;
+	background: #141414;
+	div.grid {
+		display: grid;
+		grid-template-areas:
+			'box1 box1 box2'
+			'box1 box1 box3'
+			'box4 box5 box3';
+		gap: 1rem;
+		width: 80%;
+		height: 80%;
+	}
+	div.gridItem {
+		position: relative;
+		background-color: black;
+		overflow: hidden;
+		&:hover img {
+			transform: scale(1.2);
+		}
+		&:hover {
+			box-shadow: 0px 3px 22px rgba(0, 0, 0, 0.6);
+		}
+	}
+	div.gridItem:nth-child(1) {
+		grid-area: box1;
+	}
+	div.gridItem:nth-child(2) {
+		grid-area: box2;
+	}
+	div.gridItem:nth-child(3) {
+		grid-area: box3;
+	}
+	div.gridItem:nth-child(4) {
+		grid-area: box4;
+	}
+	div.gridItem:nth-child(5) {
+		grid-area: box5;
+	}
+	img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		transition: transform 0.3s linear;
+	}
+	div.content {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 2;
+		width: 100%;
+		padding: 0 2rem 3rem;
+		box-sizing: border-box;
+	}
+	div.content h2 {
+		margin: 0;
+		color: white;
+		font-size: 1.55rem;
+	}
+	div.content p {
+		color: white;
+		margin: 0;
+	}
+	div.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+	}
+	div.gridItem:nth-child(1) div.content h2 {
+		font-size: 2.5rem;
 	}
 `;
 
